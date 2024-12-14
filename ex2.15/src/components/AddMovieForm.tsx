@@ -19,10 +19,10 @@ const AddMovieForm = ({ onMovieAdded }: AddMovieFormProps) => {
     onMovieAdded({
       title,
       director,
-      duration: duration ?? 0,
-      imageUrl,
-      description,
-      budget,
+      duration: (duration === undefined || isNaN(duration)) ? 0 : duration,
+      imageUrl: imageUrl === "" ? undefined : imageUrl,
+      description: description== "" ? undefined : description,
+      budget: (budget === undefined || isNaN(budget)) ? undefined : budget,
     });
   };
   return (
@@ -49,7 +49,7 @@ const AddMovieForm = ({ onMovieAdded }: AddMovieFormProps) => {
         <label>Durée :</label>
         <input
           type="number"
-          value={duration ?? ""}
+          value={(duration === undefined || isNaN(duration)) ? "" : duration}
           onChange={(e) => setDuration(parseInt(e.target.value))}
           required
         />
@@ -58,7 +58,7 @@ const AddMovieForm = ({ onMovieAdded }: AddMovieFormProps) => {
         <label>URL de l'image :</label>
         <input
           type="text"
-          value={imageUrl}
+          value={imageUrl !== undefined ? imageUrl : ""}
           onChange={(e) => setImageUrl(e.target.value)}
         />
       </div>
@@ -73,7 +73,7 @@ const AddMovieForm = ({ onMovieAdded }: AddMovieFormProps) => {
         <label>Budget :</label>
         <input
           type="number"
-          value={budget ?? ""}
+          value={(budget === undefined || isNaN(budget)) ? "" : budget}
           onChange={(e) => setBudget(parseInt(e.target.value))}
         />
       </div>
