@@ -11,7 +11,7 @@ const MovieListView = ({ movies }: MovieListViewProps) => {
     <div >
       <ul className="movie-list-view">
         {movies.map((movie) => (
-          <MovieCard key={movie.title} movie={movie} />
+          <MovieCard key={movie.id} movie={movie} />
         ))}
       </ul>
     </div>
